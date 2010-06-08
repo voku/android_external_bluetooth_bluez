@@ -17,7 +17,8 @@ LOCAL_C_INCLUDES:=\
 	$(LOCAL_PATH)/../common \
 
 LOCAL_SHARED_LIBRARIES := \
-	libbluetooth
+	libbluetooth \
+	liblog
 
 LOCAL_MODULE_PATH := $(TARGET_OUT_OPTIONAL_EXECUTABLES)
 LOCAL_MODULE_TAGS := eng
@@ -42,7 +43,8 @@ LOCAL_C_INCLUDES:=\
 	$(LOCAL_PATH)/../common \
 
 LOCAL_SHARED_LIBRARIES := \
-	libbluetooth
+	libbluetooth \
+	liblog
 
 LOCAL_STATIC_LIBRARIES := \
 	libbluez-common-static
@@ -71,7 +73,8 @@ LOCAL_C_INCLUDES:=\
 	$(LOCAL_PATH)/../common \
 
 LOCAL_SHARED_LIBRARIES := \
-	libbluetooth
+	libbluetooth \
+	liblog
 
 LOCAL_STATIC_LIBRARIES := \
 	libbluez-common-static
@@ -100,7 +103,8 @@ LOCAL_C_INCLUDES:=\
 	$(LOCAL_PATH)/../common \
 
 LOCAL_SHARED_LIBRARIES := \
-	libbluetooth
+	libbluetooth \
+	liblog
 
 LOCAL_STATIC_LIBRARIES := \
 	libbluez-common-static
@@ -125,7 +129,8 @@ LOCAL_C_INCLUDES:=\
 	$(LOCAL_PATH)/../common \
 
 LOCAL_SHARED_LIBRARIES := \
-	libbluetooth
+	libbluetooth \
+	liblog
 
 LOCAL_MODULE_PATH := $(TARGET_OUT_OPTIONAL_EXECUTABLES)
 LOCAL_MODULE_TAGS := eng
@@ -154,7 +159,8 @@ LOCAL_C_INCLUDES:=\
 	$(LOCAL_PATH)/../common \
 
 LOCAL_SHARED_LIBRARIES := \
-	libbluetooth
+	libbluetooth \
+	liblog
 
 LOCAL_STATIC_LIBRARIES := \
 	libbluez-common-static

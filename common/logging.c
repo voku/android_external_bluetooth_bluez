@@ -27,12 +27,79 @@
 
 #include <stdio.h>
 #include <stdarg.h>
+#if defined(ANDROID_CHANGES)
+#include <cutils/log.h>
+#else
 #include <syslog.h>
+#endif
 
 #include "logging.h"
 
 static volatile int debug_enabled = 0;
 
+#if defined(ANDROID_CHANGES)
+static const char *ident = NULL;
+
+void info(const char *format, ...)
+{
+	va_list ap;
+	va_start(ap, format);
+	LOG_PRI_VA(ANDROID_LOG_INFO, ident, format, ap);
+	vfprintf(stderr, format, ap);
+	fprintf(stderr, "\n");
+	va_end(ap);
+}
+
+void error(const char *format, ...)
+{
+	va_list ap;
+	va_start(ap, format);
+	LOG_PRI_VA(ANDROID_LOG_ERROR, ident, format, ap);
+	vfprintf(stderr, format, ap);
+	fprintf(stderr, "\n");
+	va_end(ap);
+}
+
+void debug(const char *format, ...)
+{
+	if (!debug_enabled)
+		return;
+
+	va_list ap;
+	va_start(ap, format);
+	LOG_PRI_VA(ANDROID_LOG_DEBUG, ident, format, ap);
+	vfprintf(stderr, format, ap);
+	fprintf(stderr, "\n");
+	va_end(ap);
+}
+
+void toggle_debug(void)
+{
+	debug_enabled = (debug_enabled + 1) % 2;
+}
+
+void enable_debug(void)
+{
+	debug_enabled = 1;
+}
+
+void disable_debug(void)
+{
+	debug_enabled = 0;
+}
+
+void start_logging(const char *ident_, const char *message, ...)
+{
+	ident = ident_;
+
+	LOG_PRI(ANDROID_LOG_INFO, ident, message);
+}
+
+void stop_logging(void)
+{
+	ident = NULL;
+}
+#else
 static inline void vinfo(const char *format, va_list ap)
 {
 	vsyslog(LOG_INFO, format, ap);
@@ -106,3 +173,4 @@ void stop_logging(void)
 {
 	closelog();
 }
+#endif
