@@ -144,6 +144,7 @@ static void print_dev_list(int ctl, int flags)
 
 	for (i = 0; i < dl->dev_num; i++)
 		print_dev_info(di + i);
+	free(dl);
 }
 
 static int create_dev(int ctl, int dev, uint32_t flags, bdaddr_t *bdaddr, int argc, char **argv)
@@ -255,6 +256,7 @@ static int release_all(int ctl)
 	for (i = 0; i < dl->dev_num; i++)
 		release_dev(ctl, (di + i)->id, 0);
 
+	free(dl);
 	return 0;
 }
 

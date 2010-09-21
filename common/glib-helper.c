@@ -779,6 +779,6 @@ int bt_acl_encrypt(const bdaddr_t *src, const bdaddr_t *dst,
 
 failed:
 	close(dd);
-
+	g_free(cmd);
 	return -err;
 }
